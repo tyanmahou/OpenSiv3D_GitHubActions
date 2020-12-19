@@ -1,0 +1,28 @@
+name: build
+
+on: [push]
+env:
+  sln-name: LearnMsBuildGitHubActions.sln
+  cache-version: v1
+
+jobs:
+  build:
+    name: MSBuild
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+
+    - name: Setup MSBuild.exe
+      uses: warrenbuckley/Setup-MSBuild@v1
+
+    - name: MSBuild
+      run: msbuild ${{env.sln-name}} -p:OutDir="out/"
+      shell: cmd
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: build-result
+        path: ./msbuild_actions_sample/out/
