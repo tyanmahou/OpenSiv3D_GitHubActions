@@ -18,11 +18,11 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2
 
     - name: MSBuild
-      run: msbuild ${{env.sln-name}} -p:OutDir="out/"
+      run: msbuild ${{env.sln-name}} -p:OutDir="out/";Configuration=Debug;Platform="x86"
       shell: cmd
 
     - name: Upload artifact
       uses: actions/upload-artifact@v1
       with:
         name: build-result
-        path: ./build
+        path: ./LearnMsBuildGitHubActions/out
