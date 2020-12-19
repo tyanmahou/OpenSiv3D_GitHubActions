@@ -18,7 +18,7 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2
 
     - name: download s3d-installer
-      run: bitsadmin /transfer myDownloadJob /download /priority normal https://siv3d.jp/downloads/Siv3D/OpenSiv3D(0.4.3)Installer.exe c:\\OpenSiv3D(0.4.3)Installer.exe
+      run: bitsadmin /transfer myDownloadJob https://siv3d.jp/downloads/Siv3D/OpenSiv3D(0.4.3)Installer.exe c:\OpenSiv3D(0.4.3)Installer.exe
 #    - name: MSBuild
 #      run: msbuild ${{env.sln-name}} -p:Configuration=Debug;Platform="x64"
 #      shell: cmd
