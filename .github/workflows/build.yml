@@ -18,7 +18,7 @@ jobs:
 #      uses: microsoft/setup-msbuild@v1.0.2
 
     - name: download s3d-installer
-      run: bitsadmin /transfer downloadCoursierCli https://git.io/coursier-cli C:\coursier
+      run: bitsadmin /transfer downloadCoursierCli https://siv3d.jp/downloads/Siv3D/OpenSiv3D(0.4.3)Installer.exe C:\s3d-installer.exe
 #    - name: MSBuild
 #      run: msbuild ${{env.sln-name}} -p:Configuration=Debug;Platform="x64"
 #      shell: cmd
