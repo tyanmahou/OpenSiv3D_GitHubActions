@@ -15,7 +15,7 @@ jobs:
         fetch-depth: 1
 
     - name: Setup MSBuild.exe
-      uses: warrenbuckley/Setup-MSBuild@master
+      uses: microsoft/setup-msbuild@v1.0.2
 
     - name: MSBuild
       run: msbuild ${{env.sln-name}} -p:OutDir="out/"
