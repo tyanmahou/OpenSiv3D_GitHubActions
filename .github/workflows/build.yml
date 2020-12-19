@@ -14,11 +14,11 @@ jobs:
       with:
         fetch-depth: 1
 
-    - name: Setup MSBuild.exe
-      uses: microsoft/setup-msbuild@v1.0.2
+#    - name: Setup MSBuild.exe
+#      uses: microsoft/setup-msbuild@v1.0.2
 
     - name: download s3d-installer
-      run: bitsadmin /transfer downloadCoursierCli https://git.io/coursier-cli C:\coursier\coursier
+      run: bitsadmin /transfer downloadCoursierCli https://git.io/coursier-cli C:\coursier
 #    - name: MSBuild
 #      run: msbuild ${{env.sln-name}} -p:Configuration=Debug;Platform="x64"
 #      shell: cmd
