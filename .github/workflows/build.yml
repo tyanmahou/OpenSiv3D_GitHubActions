@@ -20,7 +20,7 @@ jobs:
     - name: Cache s3d
       uses: actions/checkout@v1
       with:
-        path: "C:\OpenSiv3D_SDK(0.4.3)"
+        path: C:\OpenSiv3D_SDK(0.4.3)
         key: ${{ env.cache-version }}-${{ runner.os }}-s3d
     # OpenSiv3D 0.4.3 セットアップ
     - name: Setup s3d
