@@ -4,7 +4,7 @@ on: [push]
 env:
   sln-name: ./Test/Test.vcxproj
   cache-version: v1
-
+  SIV3D_0_4_3: C:\OpenSiv3D_SDK(0.4.3)
 jobs:
   build:
     name: MSBuild
@@ -25,9 +25,9 @@ jobs:
       run: Expand-Archive -Path "C:\OpenSiv3D_SDK(0.4.3).zip" -DestinationPath "C:\OpenSiv3D_SDK(0.4.3)"
       shell: powershell
 
-    - name: set s3d path
-      run: set SIV3D_0_4_3=C:\OpenSiv3D_SDK(0.4.3)
-      shell: cmd
+    # - name: set s3d path
+    #   run: set SIV3D_0_4_3=C:\OpenSiv3D_SDK(0.4.3)
+    #   shell: cmd
 
     - name: MSBuild
       run: msbuild ${{env.sln-name}} -p:Configuration=Debug;Platform="x64";SolutionDir=../
