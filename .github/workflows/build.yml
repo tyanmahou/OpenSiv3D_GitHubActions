@@ -14,23 +14,21 @@ jobs:
       with:
         fetch-depth: 1
 
-  #  - name: Setup MSBuild.exe
-  #    uses: microsoft/setup-msbuild@v1.0.2
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@v1.0.2
 
-    # - name: download s3d
-    #   run: bitsadmin /transfer s3d-download https://siv3d.jp/downloads/Siv3D/manual/0.4.3/OpenSiv3D_SDK(0.4.3).zip C:\OpenSiv3D_SDK(0.4.3).zip
-    #   shell: cmd
+    - name: download s3d
+      run: bitsadmin /transfer s3d-download https://siv3d.jp/downloads/Siv3D/manual/0.4.3/OpenSiv3D_SDK(0.4.3).zip C:\OpenSiv3D_SDK(0.4.3).zip
+      shell: cmd
 
-    # - name: unzip s3d
-    #   run: Expand-Archive -Path "C:\OpenSiv3D_SDK(0.4.3).zip" -DestinationPath "C:\OpenSiv3D_SDK(0.4.3)"
-    #   shell: powershell
+    - name: unzip s3d
+      run: Expand-Archive -Path "C:\OpenSiv3D_SDK(0.4.3).zip" -DestinationPath "C:\OpenSiv3D_SDK(0.4.3)"
+      shell: powershell
 
     - name: set s3d path
       run: set SIV3D_0_4_3=C:\OpenSiv3D_SDK(0.4.3)
       shell: cmd
-    - name: call s3d path
-      run: echo %SIV3D_0_4_3%
-      shell: cmd      
-  #  - name: MSBuild
-  #    run: msbuild ${{env.sln-name}} -p:Configuration=Debug;Platform="x64"
-  #    shell: cmd
+      
+    - name: MSBuild
+      run: msbuild ${{env.sln-name}} -p:Configuration=Debug;Platform="x64"
+      shell: cmd
