@@ -25,7 +25,7 @@ jobs:
       shell: powershell
     # ビルド
     - name: MSBuild
-      run: msbuild ${{env.proj-name}} -p:Configuration=Debug;Platform="x64"
+      run: msbuild ${{env.proj-name}} -p:Configuration=Release;Platform="x64"
       shell: cmd
       env:
         SIV3D_0_4_3: C:\OpenSiv3D_SDK(0.4.3)
