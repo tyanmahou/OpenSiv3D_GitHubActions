@@ -1,4 +1,4 @@
-﻿
+
 # include <Siv3D.hpp> // OpenSiv3D v0.4.3
 
 void Main()
@@ -18,7 +18,7 @@ void Main()
 	while (System::Update())
 	{
 		// テキストを画面の中心に描く
-		font(U"Hello, Siv3D!🐣").drawAt(Scene::Center(), Palette::Black);
+		font(U"Hello, Siv3D! test🐣").drawAt(Scene::Center(), Palette::Black);
 
 		// 大きさをアニメーションさせて猫を表示する
 		cat.resized(100 + Periodic::Sine0_1(1s) * 20).drawAt(catPos);
