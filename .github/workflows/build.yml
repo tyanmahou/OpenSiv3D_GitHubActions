@@ -27,7 +27,14 @@ jobs:
       shell: powershell
 
     - name: MSBuild
-      run: msbuild ${{env.proj-name}} -p:Configuration=Debug;Platform="x64";SolutionDir=../
+      run: msbuild ${{env.proj-name}} -p:Configuration=Debug;Platform="x64";SolutionDir=../;OutDir="../../out/"
       shell: cmd
       env:
         SIV3D_0_4_3: C:\OpenSiv3D_SDK(0.4.3)
+    # ビルド結果をアップロード
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: build-result
+        path: ./out
+
