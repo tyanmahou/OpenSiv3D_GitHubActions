@@ -13,22 +13,22 @@ jobs:
       with:
         fetch-depth: 1
 
-    - name: Setup MSBuild.exe
-      uses: microsoft/setup-msbuild@v1.0.2
+    #- name: Setup MSBuild.exe
+    #  uses: microsoft/setup-msbuild@v1.0.2
 
     # OpenSiv3D zip ダウンロード
-    - name: download s3d
-      run: bitsadmin /transfer s3d-download https://siv3d.jp/downloads/Siv3D/manual/0.4.3/OpenSiv3D_SDK(0.4.3).zip C:\OpenSiv3D_SDK(0.4.3).zip
-      shell: cmd
+    #- name: download s3d
+    #  run: bitsadmin /transfer s3d-download https://siv3d.jp/downloads/Siv3D/manual/0.4.3/OpenSiv3D_SDK(0.4.3).zip C:\OpenSiv3D_SDK(0.4.3).zip
+    #  shell: cmd
     # zip解凍
-    - name: unzip s3d
-      run: Expand-Archive -Path "C:\OpenSiv3D_SDK(0.4.3).zip" -DestinationPath "C:"
-      shell: powershell
+    #- name: unzip s3d
+    #  run: Expand-Archive -Path "C:\OpenSiv3D_SDK(0.4.3).zip" -DestinationPath "C:"
+    #  shell: powershell
     # 環境変数設定
     - name: set s3d path
-      run: setx /U SIV3D_0_4_3 C:\OpenSiv3D_SDK(0.4.3)
+      run: setx SIV3D_0_4_3 C:\OpenSiv3D_SDK(0.4.3)
       shell: cmd
 
-    - name: MSBuild
-      run: msbuild ${{env.proj-name}} -p:Configuration=Debug;Platform="x64";SolutionDir=../
-      shell: cmd
+    #- name: MSBuild
+    #  run: msbuild ${{env.proj-name}} -p:Configuration=Debug;Platform="x64";SolutionDir=../
+    #  shell: cmd
