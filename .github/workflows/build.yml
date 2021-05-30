@@ -24,7 +24,12 @@ jobs:
     - name: unzip s3d
       run: Expand-Archive -Path "C:\OpenSiv3D_SDK(0.4.3).zip" -DestinationPath "C:\OpenSiv3D_SDK(0.4.3)"
       shell: powershell
-
+    - name: aa
+      run: cd C:\OpenSiv3D_SDK(0.4.3)
+      shell: cmd
+    - name: aaa
+      run: dir
+      shell: cmd       
     # - name: set s3d path
     #   run: set SIV3D_0_4_3=C:\OpenSiv3D_SDK(0.4.3)
     #   shell: cmd
