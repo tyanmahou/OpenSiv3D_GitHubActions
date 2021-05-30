@@ -15,9 +15,16 @@ jobs:
 
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v1.0.2
-
+    
+    # キャッシュ
+    - name: Cache s3d
+      uses: actions/checkout@v1
+      with:
+        path: "C:\OpenSiv3D_SDK(0.4.3)"
+        key: ${{ env.cache-version }}-${{ runner.os }}-s3d
     # OpenSiv3D 0.4.3 セットアップ
     - name: Setup s3d
+      if: steps.cache.outputs.cache-hit != 'true'
       run: |
         bitsadmin /transfer s3d-download "https://siv3d.jp/downloads/Siv3D/manual/0.4.3/OpenSiv3D_SDK(0.4.3).zip" "C:\OpenSiv3D_SDK(0.4.3).zip"
         Expand-Archive -Path "C:\OpenSiv3D_SDK(0.4.3).zip" -DestinationPath "C:"
