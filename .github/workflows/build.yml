@@ -14,15 +14,20 @@ jobs:
       with:
         fetch-depth: 1
 
-#    - name: Setup MSBuild.exe
-#      uses: microsoft/setup-msbuild@v1.0.2
+  #  - name: Setup MSBuild.exe
+  #    uses: microsoft/setup-msbuild@v1.0.2
 
-#    - name: download s3d-installer
-#      run: bitsadmin /transfer s3d-install https://siv3d.jp/downloads/Siv3D/OpenSiv3D(0.4.3)Installer.exe C:\s3d-installer.exe
-#      shell: cmd
+    - name: download s3d
+      run: bitsadmin /transfer s3d-download https://siv3d.jp/downloads/Siv3D/manual/0.4.3/OpenSiv3D_SDK(0.4.3).zip C:\OpenSiv3D_SDK(0.4.3).zip
+      shell: cmd
+
+    - name: unzip s3d
+      run: Expand-Archive C:\OpenSiv3D_SDK(0.4.3).zip
+      shell: powershell
+      
     - name: install s3d
       run: dir
       shell: cmd
-#    - name: MSBuild
-#      run: msbuild ${{env.sln-name}} -p:Configuration=Debug;Platform="x64"
-#      shell: cmd
+  #  - name: MSBuild
+  #    run: msbuild ${{env.sln-name}} -p:Configuration=Debug;Platform="x64"
+  #    shell: cmd
