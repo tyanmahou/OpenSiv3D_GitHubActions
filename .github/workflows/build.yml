@@ -16,25 +16,22 @@ jobs:
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v1.0.2
 
-    # OpenSiv3D 0.4.3 zip ダウンロード
-    - name: download s3d
-      run: bitsadmin /transfer s3d-download https://siv3d.jp/downloads/Siv3D/manual/0.4.3/OpenSiv3D_SDK(0.4.3).zip C:\OpenSiv3D_SDK(0.4.3).zip
-      shell: cmd
-
-    # zip解凍
-    - name: unzip s3d
-      run: Expand-Archive -Path "C:\OpenSiv3D_SDK(0.4.3).zip" -DestinationPath "C:"
+    # OpenSiv3D 0.4.3 セットアップ
+    - name: Setup s3d
+      run: |
+        bitsadmin /transfer s3d-download https://siv3d.jp/downloads/Siv3D/manual/0.4.3/OpenSiv3D_SDK(0.4.3).zip C:\OpenSiv3D_SDK(0.4.3).zip
+        Expand-Archive -Path "C:\OpenSiv3D_SDK(0.4.3).zip" -DestinationPath "C:"
       shell: powershell
-
+    # ビルド
     - name: MSBuild
-      run: msbuild ${{env.proj-name}} -p:Configuration=Debug;Platform="x64";SolutionDir=../;OutDir="../../out/"
+      run: msbuild ${{env.proj-name}} -p:Configuration=Debug;Platform="x64";SolutionDir=../;OutDir="../out/"
       shell: cmd
       env:
         SIV3D_0_4_3: C:\OpenSiv3D_SDK(0.4.3)
-    # ビルド結果をアップロード
-    - name: Upload artifact
-      uses: actions/upload-artifact@v1
-      with:
-        name: build-result
-        path: ./out
+    # # ビルド結果をアップロード
+    # - name: Upload artifact
+    #   uses: actions/upload-artifact@v1
+    #   with:
+    #     name: build-result
+    #     path: ./out
 
