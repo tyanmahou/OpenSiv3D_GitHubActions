@@ -22,9 +22,9 @@ jobs:
       shell: cmd
 
     - name: unzip s3d
-      run: Expand-Archive C:\OpenSiv3D_SDK(0.4.3).zip
+      run: Expand-Archive -Path C:\OpenSiv3D_SDK(0.4.3).zip
       shell: powershell
-      
+
     - name: install s3d
       run: dir
       shell: cmd
