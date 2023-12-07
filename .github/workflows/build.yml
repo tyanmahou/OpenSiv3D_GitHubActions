@@ -1,9 +1,10 @@
-name: build
+﻿name: build
 
 on: [push]
 env:
   app-path: ./Test/App
   sln-name: ./Test.sln
+  version: 0.6.13
 jobs:
   build:
     name: MSBuild
@@ -16,18 +17,18 @@ jobs:
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v1.0.2
 
-    # OpenSiv3D 0.4.3 セットアップ
+    # OpenSiv3D セットアップ
     - name: Setup s3d
       run: |
-        bitsadmin /transfer s3d-download "https://siv3d.jp/downloads/Siv3D/manual/0.4.3/OpenSiv3D_SDK(0.4.3).zip" "C:\OpenSiv3D_SDK(0.4.3).zip"
-        Expand-Archive -Path "C:\OpenSiv3D_SDK(0.4.3).zip" -DestinationPath "C:"
+        bitsadmin /transfer s3d-download "https://siv3d.jp/downloads/Siv3D/manual/${{ env.version }}/OpenSiv3D_SDK_${{ env.version }}.zip" "C:\OpenSiv3D_SDK.zip"
+        Expand-Archive -Path "C:\OpenSiv3D_SDK.zip" -DestinationPath "C:"
       shell: powershell
     # ビルド
     - name: MSBuild
       run: msbuild ${{env.sln-name}} -p:Configuration=Release;Platform="x64"
       shell: cmd
       env:
-        SIV3D_0_4_3: C:\OpenSiv3D_SDK(0.4.3)
+        SIV3D_0_6_13: C:\OpenSiv3D_SDK
     # ビルド結果をアップロード
     - name: Upload artifact
       uses: actions/upload-artifact@v1
