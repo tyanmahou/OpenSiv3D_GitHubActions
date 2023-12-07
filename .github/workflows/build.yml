@@ -27,7 +27,7 @@ jobs:
       run: |
         $s3dVersion = "${{ env.version }}"
         $s3dVersionEnv = "SIV3D_" + $s3dVersion.Replace('.', '_')
-        $setCommand = "$s3dVersionEnv=C:\OpenSiv3D_SDK_${{ env.version }}"
+        $setCommand = "set $s3dVersionEnv=C:\OpenSiv3D_SDK_${{ env.version }}"
         Invoke-Expression $setCommand
         echo Siv3D Path > %SIV3D_0_6_13%
       shell: powershell
