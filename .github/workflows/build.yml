@@ -33,7 +33,7 @@ jobs:
       run: msbuild ${{env.sln-name}} -p:Configuration=Release;Platform="x64"
       shell: cmd
       env:
-        "${{version-env}}": C:\OpenSiv3D_SDK_${{ env.version }}
+        $version-env: C:\OpenSiv3D_SDK_${{ env.version }}
     # ビルド結果をアップロード
     - name: Upload artifact
       uses: actions/upload-artifact@v1
