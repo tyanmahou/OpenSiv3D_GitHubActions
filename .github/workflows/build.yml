@@ -27,11 +27,13 @@ jobs:
       run: |
         $s3dVersion = "${{ env.version }}"
         $s3dVersionEnv = "SIV3D_" + $s3dVersion.Replace('.', '_')
-        echo "$s3dVersionEnv=C:\OpenSiv3D_SDK_${{ env.version }}" >> $GITHUB_ENV
+        echo "version-env=$s3dVersionEnv" >> $GITHUB_ENV
     # ビルド
     - name: MSBuild
       run: msbuild ${{env.sln-name}} -p:Configuration=Release;Platform="x64"
       shell: cmd
+      env:
+        ${{version-env}}: C:\OpenSiv3D_SDK_${{ env.version }}
     # ビルド結果をアップロード
     - name: Upload artifact
       uses: actions/upload-artifact@v1
