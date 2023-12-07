@@ -25,11 +25,11 @@ jobs:
       shell: powershell
     # ビルド
     - name: MSBuild
-      run: |
-        $s3dVersion = "${{ env.version }}"
-        $s3dVersionEnv = "SIV3D_" + $s3dVersion.Replace('.', '_')        
-        msbuild ${{env.sln-name}} -p:Configuration=Release;Platform="x64";SIV3D_0_6_13="C:\OpenSiv3D_SDK_${{ env.version }}"
-      shell: powershell
+      run: |       
+        msbuild ${{env.sln-name}} -p:Configuration=Release;Platform="x64"
+      shell: cmd
+      env:
+        SIV3D_0_6_13: C:\OpenSiv3D_SDK_${{ env.version }}
     # ビルド結果をアップロード
     - name: Upload artifact
       uses: actions/upload-artifact@v1
