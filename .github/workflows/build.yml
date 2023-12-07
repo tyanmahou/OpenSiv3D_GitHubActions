@@ -27,14 +27,14 @@ jobs:
       run: |
         $s3dVersion = "${{ env.version }}"
         $s3dVersionEnv = "SIV3D_" + $s3dVersion.Replace('.', '_')
-        set $s3dVersionEnv=C:\OpenSiv3D_SDK_${{ env.version }}
-        echo %SIV3D_0_6_13%
+        $setCommand = "$s3dVersionEnv=C:\OpenSiv3D_SDK_${{ env.version }}"
+        Invoke-Expression $setCommand
+        echo Siv3D Path > %SIV3D_0_6_13%
+      shell: powershell
     # ビルド
     - name: MSBuild
       run: msbuild ${{env.sln-name}} -p:Configuration=Release;Platform="x64"
       shell: cmd
-      env:
-        SIV3D_6_13: C:\OpenSiv3D_SDK_${{ env.version }}
     # ビルド結果をアップロード
     - name: Upload artifact
       uses: actions/upload-artifact@v1
