@@ -23,21 +23,16 @@ jobs:
         bitsadmin /transfer s3d-download "https://siv3d.jp/downloads/Siv3D/manual/${{ env.version }}/OpenSiv3D_SDK_${{ env.version }}.zip" "C:\OpenSiv3D_SDK.zip"
         Expand-Archive -Path "C:\OpenSiv3D_SDK.zip" -DestinationPath "C:"
       shell: powershell
-    - name: Set Env
+    # ビルド
+    - name: MSBuild
       run: |
         $s3dVersion = "${{ env.version }}"
         $s3dVersionEnv = "SIV3D_" + $s3dVersion.Replace('.', '_')
         $setCommand = "set $s3dVersionEnv=C:\OpenSiv3D_SDK_${{ env.version }}"
         Invoke-Expression $setCommand
-        echo $s3dVersion
-        echo $s3dVersionEnv
-        echo $setCommand
-        echo %SIV3D_0_6_13%
+        echo $env:SIV3D_0_6_13          
+        msbuild ${{env.sln-name}} -p:Configuration=Release;Platform="x64"
       shell: powershell
-    # ビルド
-    - name: MSBuild
-      run: msbuild ${{env.sln-name}} -p:Configuration=Release;Platform="x64"
-      shell: cmd
     # ビルド結果をアップロード
     - name: Upload artifact
       uses: actions/upload-artifact@v1
