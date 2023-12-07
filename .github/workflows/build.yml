@@ -15,7 +15,7 @@ jobs:
         fetch-depth: 1
 
     - name: Setup MSBuild.exe
-      uses: microsoft/setup-msbuild@v1.0.2
+      uses: microsoft/setup-msbuild@v1.3.1
 
     # OpenSiv3D セットアップ
     - name: Setup s3d
