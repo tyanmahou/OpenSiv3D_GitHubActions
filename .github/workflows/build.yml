@@ -28,7 +28,7 @@ jobs:
       run: |  
         [Environment]::SetEnvironmentVariable("SIV3D_" + "${{ env.version }}".Replace(".", "_"), "C:\OpenSiv3D_SDK_${{ env.version }}")    
         msbuild ${{env.sln-name}} -p:Configuration=Release;Platform="x64"
-      shell: powershell
+      shell: pwsh
     # ビルド結果をアップロード
     - name: Upload artifact
       uses: actions/upload-artifact@v1
