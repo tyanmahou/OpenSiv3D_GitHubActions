@@ -25,11 +25,10 @@ jobs:
       shell: powershell
     # ビルド
     - name: MSBuild
-      run: |       
+      run: |  
+        [Environment]::SetEnvironmentVariable("SIV3D_" + "${{ env.version }}".Replace(".", "_"), "C:\OpenSiv3D_SDK_${{ env.version }}")    
         msbuild ${{env.sln-name}} -p:Configuration=Release;Platform="x64"
-      shell: cmd
-      env:
-        SIV3D_0_6_13: C:\OpenSiv3D_SDK_${{ env.version }}
+      shell: powershell
     # ビルド結果をアップロード
     - name: Upload artifact
       uses: actions/upload-artifact@v1
